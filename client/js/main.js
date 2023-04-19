@@ -1,5 +1,6 @@
 import { ajax } from './modules/ajax.js';
 import { $ } from './modules/dom.js';
+import { title } from './components/title.js';
 
 var pods = $('.js-pods');
 pods.click((e) => {
@@ -47,7 +48,7 @@ const dataArray = new Float32Array(bufferLength);
 audioSourceNode.connect(analyserNode);
 analyserNode.connect(audioCtx.destination);
 
-const canvas = document.querySelectorAll('.cv-frequency');
+const canvas = document.querySelectorAll('.js-cv-frequency');
 for (let i = 0; i < canvas.length; i++) {
 	canvas[i].width = canvas[i].parentElement.clientWidth;
 }
@@ -59,17 +60,22 @@ function cvLoop(evt) {
 	}
 }
 
+let phrase = `As efeméridas - 1 - María Soliña / Os irmandiños - Tempada 2, Episodio 3 - `;
 function draw() {
-	requestAnimationFrame(draw);
+	setTimeout(draw, 300);
+	// requestAnimationFrame(draw);
 
 	let fbc_array = new Uint8Array(analyserNode.frequencyBinCount);
 	let bar_count = window.innerWidth / 2;
+
+	title.paint(phrase);
+	phrase += phrase[0];
+	phrase = phrase.substring(1);
 
 	analyserNode.getByteFrequencyData(fbc_array);
 
 	cvLoop((cv) => cv.clearRect(0, 0, canvas[0].width, canvas[0].height));
 
-	console.info();
 	for (var i = 0; i < fbc_array.length; i++) {
 		let bar_pos = (canvas[0].width * i * 2) / fbc_array.length;
 		// let bar_pos = (fbc_array.length * i) / canvas[0].width;
@@ -103,3 +109,9 @@ function draw() {
 }
 
 draw();
+
+// title.paint();
+
+document.addEventListener('keydown', (e) => {
+	title.paint(e.key);
+});
