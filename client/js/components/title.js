@@ -1,14 +1,19 @@
 import { chars } from './chars.js';
 
+const TEXT_SPD = 4;
+const DOT_SIZE = 1;
+const DOT_WIDTH = 7;
+const DOT_HEIGHT = 8;
+let phrase = `As efeméridas - María Soliña / Os irmandiños - Tempada 2, Episodio 3 - `;
 const cv = document.querySelector('.js-cv-title');
 const ctx = cv.getContext('2d');
-cv.width = 347;
-cv.height = 40;
+cv.width = 345;
+cv.height = DOT_SIZE * DOT_HEIGHT + (DOT_HEIGHT - 1);
 
-const charGrid = function () {
-	this.w = 7;
-	this.h = 8;
-	this.dot = { size: 2 };
+const CharGrid = function () {
+	this.w = DOT_WIDTH;
+	this.h = DOT_HEIGHT;
+	this.dot = { size: DOT_SIZE };
 	this.paint = (phrase) => {
 		ctx.clearRect(0, 0, cv.width, cv.height);
 		ctx.fillStyle = '#da3';
@@ -41,10 +46,13 @@ const charGrid = function () {
 	};
 };
 
-const grid = new charGrid();
+const grid = new CharGrid();
 
 export const title = {
-	paint: (phrase) => {
+	start: () => {
+		phrase += phrase[0];
+		phrase = phrase.substring(1);
 		grid.paint(phrase);
+		setTimeout(title.start, 1000 / TEXT_SPD);
 	}
 };

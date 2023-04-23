@@ -37,19 +37,5 @@ $.click('.js-vinyl:not(.selected)', (e) => {
 	e.addClass('selected');
 });
 
-let phrase = ` As efeméridas - María Soliña / Os irmandiños - Tempada 2, Episodio 3 - `;
-function drawTitle() {
-	phrase += phrase[0];
-	phrase = phrase.substring(1);
-	title.paint(phrase);
-	setTimeout(drawTitle, 500);
-}
-
-function draw() {
-	// requestAnimationFrame(draw);
-	setTimeout(draw, 1000 / 75);
-	frequency.getWaves();
-}
-
-draw();
-drawTitle();
+frequency.start();
+title.start();
