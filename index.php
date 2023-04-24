@@ -18,6 +18,7 @@ function template($name) {
 </head>
 <body>
     <?php template('decoration') ?>
+
     <div class="page background-black">
         <?php
             template('vinylBox');
