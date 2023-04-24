@@ -1,5 +1,7 @@
 import { loop } from './helpers.js';
 
+const SHOW_TRACE = false;
+
 function getElapsedTime(audio) {
 	setInterval(() => {
 		console.info(
@@ -18,7 +20,7 @@ export const $ = function $(name) {
 		selves = document.querySelectorAll(name);
 	}
 
-	if (selves.length === 0) {
+	if (selves.length === 0 && SHOW_TRACE) {
 		console.trace(`$('${name}') doesn't exist.`);
 	}
 
@@ -59,6 +61,16 @@ export const $ = function $(name) {
 	selves.removeClass = (val) => {
 		loop(selves, (self) => {
 			self.removeClass(val);
+		});
+	};
+
+	selves.css = (key, val) => {
+		loop(selves, (self) => {
+			if (val) {
+				self.style[key] = val;
+			} else {
+				return self.style[key];
+			}
 		});
 	};
 

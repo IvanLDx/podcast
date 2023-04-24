@@ -12,7 +12,7 @@
 
         <!-- HIDDEN AUDIO TOOL -->
         <div class="audio-wrapper">
-            <audio controls>
+            <audio controls volume="0">
                 <!-- <source class="js-player-src" type="audio/mp3" src="audio/test/ramones.mp3"> -->
                 <source class="js-player-src" type="audio/mp3" src="audio/asefemeridas/1/1.mp3">
             </audio>

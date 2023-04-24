@@ -27,11 +27,22 @@
     height: 4px;
     background-color: var(--red-transparent);
     margin: 0 2rem;
+    position: relative;
+}
+
+.timer-bar::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 500%;
+    top: -200%;
+    left: 0;
+    cursor: pointer;
 }
 
 .timer {
     height: 100%;
-    width: 50px;
+    width: 0;
     background-color: var(--red);
 }
 
@@ -142,6 +153,9 @@
 }
 
 .cv-title {
+    background-color: var(--black);
+    padding: 0.2rem;
+    padding-top: 0.4rem;
     width: 100%;
     position: absolute;
     bottom: 4px;
