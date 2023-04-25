@@ -1,27 +1,31 @@
+import Audio from '../modules/Audio.js';
 import { $ } from '../modules/dom.js';
 
-const $timerBar = $('.timer-bar');
-const $timeLine = $('.timer');
-const $audio = $('audio');
-$audio[0].volume = 0;
-
-const barWidth = $timerBar[0].clientWidth;
+const SPEED = 4;
+const VOLUME = 0;
+const $audio = Audio(VOLUME, SPEED);
 
 export const timer = () => {
-	let audio = {
-		dom: $audio[0],
-		duration: $audio[0].duration,
-		currentTime: $audio[0].currentTime
-	};
-	audio.width = (audio.currentTime * barWidth) / audio.duration;
 	setTimeout(() => {
-		$timeLine.css('width', audio.width + 'px');
-		// console.info(audio);
+		$audio.updateWidth();
 		timer();
-	}, 1000);
+	}, 1000 / SPEED);
 };
-$timerBar.on('click', (e) => {
+
+$audio.bar.click((e) => {
 	let targetRect = e.target.getBoundingClientRect();
-	let xPos = e.clientX - targetRect.left;
-	console.info(xPos);
+	let mouseX = e.clientX - targetRect.left;
+
+	$audio.selectTimeLine(mouseX);
+});
+
+$.click('.play-pause', (e) => {
+	switch (e.attr('data-action')) {
+		case 'play':
+			$audio.playAction(e);
+			break;
+		case 'pause':
+			$audio.pauseAction(e);
+			break;
+	}
 });

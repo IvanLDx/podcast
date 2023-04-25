@@ -120,12 +120,12 @@
 
 .play-controls {
     display: grid;
-    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
+    grid-template-columns: 1fr 2fr repeat(3, 1fr);
     grid-gap: 1rem;
     margin: 0 3rem;
 }
 
-.play-controls > div {
+.play-controls > button {
     background-color: var(--yellow);
     border: 3px solid var(--brown);
     border-bottom-width: 5px;
@@ -133,12 +133,19 @@
     height: 28px;
     text-align: center;
     border-radius: 13px;
+    cursor: pointer;
 }
 
 .controls-img {
     height: 11px;
-    position: relative;
-    top: -1px;
+}
+
+.play-pause[data-action="play"] .pause-img {
+    display: none;
+}
+
+.play-pause[data-action="pause"] .play-img {
+    display: none;
 }
 
 .current-audio-title {

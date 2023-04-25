@@ -31,21 +31,18 @@
         <div class="controls">
             <div class="bookmark"></div>
             <div class="play-controls">
-                <div class="backward">
+                <button class="backward">
                     <img class="controls-img" src="./client/img/svg/controls/backward.svg" alt="">
-                </div>
-                <div class="stop">
-                    <img class="controls-img" src="./client/img/svg/controls/stop.svg" alt="">
-                </div>
-                <div class="play">
-                    <img class="controls-img" src="./client/img/svg/controls/play.svg" alt="">
-                </div>
-                <div class="pause">
-                    <img class="controls-img" src="./client/img/svg/controls/pause.svg" alt="">
-                </div>
-                <div class="forward">
+                </button>
+                <button class="play-pause" data-action="play">
+                    <img class="controls-img play-img" src="./client/img/svg/controls/play.svg" alt="">
+                    <img class="controls-img pause-img" src="./client/img/svg/controls/pause.svg" alt="">
+                </button>
+                <button class="forward">
                     <img class="controls-img" src="./client/img/svg/controls/forward.svg" alt="">
-                </div>
+                </button>
+                <button></button>
+                <button></button>
             </div>
         </div>
     </div>

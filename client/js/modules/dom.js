@@ -42,7 +42,7 @@ export const $ = function $(name) {
 
 	selves.attr = (attr, val) => {
 		loop(selves, (self) => {
-			self.setAttribute(attr, val);
+			self.attr(attr, val);
 		});
 	};
 
@@ -55,6 +55,12 @@ export const $ = function $(name) {
 	selves.addClass = (val) => {
 		loop(selves, (self) => {
 			self.addClass(val);
+		});
+	};
+
+	selves.containsClass = (val) => {
+		loop(selves, (self) => {
+			self.containsClass(val);
 		});
 	};
 
@@ -103,7 +109,15 @@ $.selfFunctions = (self) => {
 	self.getAudioUrl = () => self.dataset?.season + '/' + self.dataset?.episode;
 	self.html = (val) => (self.innerHTML = val);
 	self.addClass = (val) => self.classList.add(val);
+	self.containsClass = (val) => self.classList.contains(val);
 	self.removeClass = (val) => self.classList.remove(val);
+	self.attr = (attr, val) => {
+		if (val) {
+			self.setAttribute(attr, val);
+		} else {
+			return self.getAttribute(attr);
+		}
+	};
 	self.val = (val) => {
 		if (typeof val === 'string') {
 			self.value = val;
