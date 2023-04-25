@@ -1,5 +1,7 @@
 import { loop } from './helpers.js';
 
+const SHOW_TRACE = false;
+
 function getElapsedTime(audio) {
 	setInterval(() => {
 		console.info(
@@ -18,7 +20,7 @@ export const $ = function $(name) {
 		selves = document.querySelectorAll(name);
 	}
 
-	if (selves.length === 0) {
+	if (selves.length === 0 && SHOW_TRACE) {
 		console.trace(`$('${name}') doesn't exist.`);
 	}
 
@@ -40,7 +42,7 @@ export const $ = function $(name) {
 
 	selves.attr = (attr, val) => {
 		loop(selves, (self) => {
-			self.setAttribute(attr, val);
+			self.attr(attr, val);
 		});
 	};
 
@@ -56,9 +58,25 @@ export const $ = function $(name) {
 		});
 	};
 
+	selves.containsClass = (val) => {
+		loop(selves, (self) => {
+			self.containsClass(val);
+		});
+	};
+
 	selves.removeClass = (val) => {
 		loop(selves, (self) => {
 			self.removeClass(val);
+		});
+	};
+
+	selves.css = (key, val) => {
+		loop(selves, (self) => {
+			if (val) {
+				self.style[key] = val;
+			} else {
+				return self.style[key];
+			}
 		});
 	};
 
@@ -91,7 +109,15 @@ $.selfFunctions = (self) => {
 	self.getAudioUrl = () => self.dataset?.season + '/' + self.dataset?.episode;
 	self.html = (val) => (self.innerHTML = val);
 	self.addClass = (val) => self.classList.add(val);
+	self.containsClass = (val) => self.classList.contains(val);
 	self.removeClass = (val) => self.classList.remove(val);
+	self.attr = (attr, val) => {
+		if (val) {
+			self.setAttribute(attr, val);
+		} else {
+			return self.getAttribute(attr);
+		}
+	};
 	self.val = (val) => {
 		if (typeof val === 'string') {
 			self.value = val;

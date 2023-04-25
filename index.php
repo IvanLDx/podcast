@@ -5,10 +5,11 @@
 <?php
 require "scripts/models/DataModel.php";
 $DataModel = new DataModel();
+
 function template($name) {
-    return include "./templates/$name.php";
+    return include ("./templates/$name.php");
 }
-?> 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,7 @@ function template($name) {
 </head>
 <body>
     <?php template('decoration') ?>
-    
+
     <div class="page background-black">
         <?php
             template('vinylBox');
