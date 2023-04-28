@@ -1,8 +1,8 @@
 import Audio from '../modules/Audio.js';
 import { $ } from '../modules/dom.js';
 
-const SPEED = 4;
-const VOLUME = 0;
+const SPEED = 1;
+const VOLUME = 1;
 const $audio = Audio(VOLUME, SPEED);
 
 export const timer = () => {

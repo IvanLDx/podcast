@@ -5,6 +5,10 @@
     position: relative;
 }
 
+audio {
+    display: none;
+}
+
 .audio-wrapper {
     /* display: none; */
     position: absolute;
@@ -120,12 +124,13 @@
 
 .play-controls {
     display: grid;
-    grid-template-columns: 1fr 2fr repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
     grid-gap: 1rem;
     margin: 0 3rem;
 }
 
-.play-controls > button {
+.play-controls > button,
+button.volume {
     background-color: var(--yellow);
     border: 3px solid var(--brown);
     border-bottom-width: 5px;
@@ -134,6 +139,31 @@
     text-align: center;
     border-radius: 13px;
     cursor: pointer;
+}
+
+.volume-wrapper {
+    position: relative;
+}
+
+.volume-wrapper > * {
+    position: absolute;
+    bottom: 48%;
+    transform: translateY(50%);
+}
+
+.volume-rail {
+    background-color: var(--white);
+    border: 3px solid var(--brown);
+    border-radius: 6px;
+    height: 12px;
+    margin-left: 20px;
+    width: calc(100% - 40px);
+}
+
+button.volume {
+    bottom: 50%;
+    left: 50%;
+    width: 50%;
 }
 
 .controls-img {
@@ -167,4 +197,68 @@
     position: absolute;
     bottom: 4px;
     right: 0;
+}
+
+.volume-container {
+    position: absolute;
+    right: calc(100% + 1rem);
+    bottom: calc(100% + 1rem);
+    width: 110px;
+    height: 110px;
+}
+
+.volume-screw {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    top: 20px;
+    left: 15px;
+    border-radius: 50%;
+    background-color: var(--brown);
+}
+
+.volume-red {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    top: 8px;
+    left: 8px;
+    border-radius: 50%;
+    background-color: var(--red);
+}
+
+.volume-black {
+    position: relative;
+    width: 58px;
+    height: 58px;
+    top: 3px;
+    left: 3px;
+    border-radius: 50%;
+    background-color: var(--black);
+}
+
+.volume-pointer {
+    position: relative;
+    height: 20px;
+    width: 6px;
+    border-radius: 2px;
+    background-color: var(--white);
+    top: 6px;
+    left: 26px;
+}
+
+.volume-traces {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.trace {
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: var(--white);
+    border-radius: 2px;
 }
