@@ -31,6 +31,7 @@
         <div class="controls">
             <div class="bookmark"></div>
             <div class="play-controls">
+                <span></span>
                 <button class="backward">
                     <img class="controls-img" src="./client/img/svg/controls/backward.svg" alt="">
                 </button>
@@ -41,9 +42,29 @@
                 <button class="forward">
                     <img class="controls-img" src="./client/img/svg/controls/forward.svg" alt="">
                 </button>
-                <div class="volume-wrapper">
+                <!-- <div class="volume-wrapper">
                     <div class="volume-rail"></div>
                     <button class="volume"></button>
+                </div> -->
+                <span></span>
+            </div>
+            <div class="volume-container">
+                <div class="volume-screw">
+                    <div class="volume-red">
+                        <div class="volume-black">
+                            <div class="volume-pointer"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="volume-traces">
+                    <div class="trace trace-1"></div>
+                    <div class="trace trace-2"></div>
+                    <div class="trace trace-3"></div>
+                    <div class="trace trace-4"></div>
+                    <div class="trace trace-5"></div>
+                    <div class="trace trace-6"></div>
+                    <div class="trace trace-7"></div>
                 </div>
             </div>
         </div>
