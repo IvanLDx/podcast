@@ -49,22 +49,22 @@
                 <span></span>
             </div>
             <div class="volume-container">
-                <div class="volume-screw">
+                <div class="volume-traces">
+                    <div class="trace trace-1"><span></span></div>
+                    <div class="trace trace-2"><span></span></div>
+                    <div class="trace trace-3"><span></span></div>
+                    <div class="trace trace-4"><span></span></div>
+                    <div class="trace trace-5"><span></span></div>
+                    <div class="trace trace-6"><span></span></div>
+                    <div class="trace trace-7"><span></span></div>
+                </div>
+
+                <div class="volume-screw js-volume-screw">
                     <div class="volume-red">
-                        <div class="volume-black">
+                        <div class="volume-black js-volume-wheel">
                             <div class="volume-pointer"></div>
                         </div>
                     </div>
-                </div>
-
-                <div class="volume-traces">
-                    <div class="trace trace-1"></div>
-                    <div class="trace trace-2"></div>
-                    <div class="trace trace-3"></div>
-                    <div class="trace trace-4"></div>
-                    <div class="trace trace-5"></div>
-                    <div class="trace trace-6"></div>
-                    <div class="trace trace-7"></div>
                 </div>
             </div>
         </div>

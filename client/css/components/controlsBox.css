@@ -215,6 +215,7 @@ button.volume {
     left: 15px;
     border-radius: 50%;
     background-color: var(--brown);
+    cursor: pointer;
 }
 
 .volume-red {
@@ -258,7 +259,40 @@ button.volume {
 .trace {
     position: absolute;
     width: 2px;
-    height: 10px;
-    background-color: var(--white);
+    height: 120px;
     border-radius: 2px;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.trace span {
+    display: block;
+    width: 100%;
+    border-radius: 2px;
+    height: 12px;
+    background-color: var(--white);
+}
+
+.trace-1 {
+    transform: translateX(50%) rotate(-67.5deg);
+}
+
+.trace-2 {
+    transform: translateX(50%) rotate(-45deg);
+}
+
+.trace-3 {
+    transform: translateX(50%) rotate(-22.5deg);
+}
+
+.trace-5 {
+    transform: translateX(50%) rotate(22.5deg);
+}
+
+.trace-6 {
+    transform: translateX(50%) rotate(45deg);
+}
+
+.trace-7 {
+    transform: translateX(50%) rotate(67.5deg);
 }
