@@ -3,6 +3,7 @@ import { $ } from './modules/dom.js';
 import { title } from './components/title.js';
 import * as controls from './components/controls.js';
 import * as frequency from './components/frequencyWave.js';
+import { volumeScrew } from './components/volumeScrew.js';
 
 var pods = $('.js-pods');
 pods.click((e) => {
@@ -40,4 +41,5 @@ $.click('.js-vinyl:not(.selected)', (e) => {
 
 controls.timer();
 frequency.start();
+volumeScrew.start();
 title.start();
