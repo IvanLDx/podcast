@@ -236,6 +236,7 @@ button.volume {
     left: 3px;
     border-radius: 50%;
     background-color: var(--black);
+    transform: rotate(67.5deg);
 }
 
 .volume-pointer {

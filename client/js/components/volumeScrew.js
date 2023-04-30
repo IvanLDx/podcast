@@ -1,21 +1,30 @@
-export const volumeScrew = {
-	screw: document.querySelector('.js-volume-screw'),
-	wheel: document.querySelector('.js-volume-wheel'),
-	clickPos: 0,
-	rotate: 0,
-	speed: 3
-};
+import Audio from '../modules/Audio.js';
+
+const $screw = document.querySelector('.js-volume-screw');
+const $wheel = document.querySelector('.js-volume-wheel');
+let clickPos = 0;
+let currentPos = 0;
+let rotate = 0;
+let speed = 2.4;
+let length = 67.5;
+
+function setAudioVolume() {
+	let maxVolume = length * 2;
+	let rawVolume = rotate + length;
+	let relativeVolume = (rawVolume * 100) / maxVolume;
+	let absVolume = relativeVolume / 100;
+	Audio().volume = absVolume;
+}
 
 function mouseMove(e) {
-	let nextPos =
-		e.clientX -
-		volumeScrew.currentPos +
-		(e.clientX - volumeScrew.clickPos) * volumeScrew.speed;
+	let nextPos = e.clientX - currentPos + (e.clientX - clickPos) * speed;
 
-	if (nextPos > 67.5) nextPos = 67.5;
-	if (nextPos < -67.5) nextPos = -67.5;
-	volumeScrew.wheel.style.transform = `rotate(${nextPos}deg)`;
-	volumeScrew.rotate = nextPos;
+	if (nextPos > length) nextPos = length;
+	if (nextPos < -length) nextPos = -length;
+
+	setAudioVolume();
+	$wheel.style.transform = `rotate(${nextPos}deg)`;
+	rotate = nextPos;
 }
 
 function removeEvents() {
@@ -28,30 +37,27 @@ function startDrag() {
 	document.onmouseup = removeEvents;
 }
 
-const getRotateStyle = function () {
-	let rotateRaw = volumeScrew.wheel.style.transform;
+const GetRotateStyle = function () {
+	let rotateRaw = $wheel.style.transform;
 	let rotate = rotateRaw.replace('rotate(', '');
 	rotate = rotate.replace('deg)');
 	rotate = parseInt(rotate, 10);
 	return rotate;
 };
-getRotateStyle.success = function (evt) {
-	evt(this);
-};
-
-getRotateStyle.setRotate = function () {
-	if (!isNaN(getRotateStyle())) {
-		volumeScrew.rotate = getRotateStyle();
+GetRotateStyle.setRotate = function () {
+	if (!isNaN(GetRotateStyle())) {
+		rotate = GetRotateStyle();
 	}
 };
 
-volumeScrew.start = function () {
-	volumeScrew.screw.onmousedown = (e) => {
-		getRotateStyle.setRotate();
+export const volumeScrew = {
+	start: function () {
+		$screw.onmousedown = (e) => {
+			GetRotateStyle.setRotate();
 
-		console.info(volumeScrew.rotate);
-		volumeScrew.clickPos = e.clientX;
-		volumeScrew.currentPos = e.clientX - volumeScrew.rotate;
-		startDrag();
-	};
+			clickPos = e.clientX;
+			currentPos = e.clientX - rotate;
+			startDrag();
+		};
+	}
 };
