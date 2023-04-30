@@ -6,8 +6,12 @@ export default Audio = (VOLUME, SPEED) => {
 		self.bar.addEventListener('click', (e) => evt(e));
 	};
 	self.timeline = document.querySelector('.timer');
-	self.volume = VOLUME;
-	self.playbackRate = SPEED;
+	if (VOLUME) {
+		self.volume = VOLUME;
+	}
+	if (SPEED) {
+		self.playbackRate = SPEED;
+	}
 
 	self.playAction = (e) => {
 		e.attr('data-action', 'pause');

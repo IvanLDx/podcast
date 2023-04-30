@@ -42,10 +42,6 @@
                 <button class="forward">
                     <img class="controls-img" src="./client/img/svg/controls/forward.svg" alt="">
                 </button>
-                <!-- <div class="volume-wrapper">
-                    <div class="volume-rail"></div>
-                    <button class="volume"></button>
-                </div> -->
                 <span></span>
             </div>
             <div class="volume-container">
