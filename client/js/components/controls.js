@@ -1,11 +1,16 @@
 import Audio from '../modules/Audio.js';
 import { $ } from '../modules/dom.js';
 
-const SPEED = 1;
+const SPEED = 3;
 const VOLUME = 1;
 const $audio = Audio(VOLUME, SPEED);
 
-export const timer = () => {
+export const start = () => {
+	$audio.setTotalTime();
+	timer();
+};
+
+const timer = () => {
 	setTimeout(() => {
 		$audio.updateWidth();
 		$audio.updateDisplayTime();
