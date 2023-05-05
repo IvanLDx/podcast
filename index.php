@@ -23,6 +23,7 @@ function template($name) {
         <?php
             template('vinylBox');
             template('controlsBox');
+            template('listOfEpisodes');
         ?>
     </div>
 

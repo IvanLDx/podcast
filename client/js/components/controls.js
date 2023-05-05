@@ -8,6 +8,7 @@ const $audio = Audio(VOLUME, SPEED);
 export const timer = () => {
 	setTimeout(() => {
 		$audio.updateWidth();
+		$audio.updateDisplayTime();
 		timer();
 	}, 1000 / SPEED);
 };

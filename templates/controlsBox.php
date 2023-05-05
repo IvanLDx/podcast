@@ -23,6 +23,11 @@
             <canvas class="js-cv-frequency cv-frequency"></canvas>
             <canvas class="js-cv-frequency cv-frequency cv-frequency-bottom"></canvas>
         </div>
+        <div class="time-numbers">
+            <span class="time-numbers__current-time js-current-time">00:00</span>
+             / 
+            <span class="time-numbers__total-time js-total-time">00:00</span>
+        </div>
         <div class="timer-bar">
             <div class="timer"></div>
         </div>
