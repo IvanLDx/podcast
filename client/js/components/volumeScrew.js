@@ -4,9 +4,9 @@ const $screw = document.querySelector('.js-volume-screw');
 const $wheel = document.querySelector('.js-volume-wheel');
 let clickPos = 0;
 let currentPos = 0;
-let rotate = 0;
 let speed = 2.4;
 let length = 67.5;
+let rotate = length;
 
 function setAudioVolume() {
 	let maxVolume = length * 2;

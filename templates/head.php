@@ -6,4 +6,5 @@
 <link rel="stylesheet" href="./client/css/master.css">
 <link rel="stylesheet" href="./client/css/components/vinylBox.css">
 <link rel="stylesheet" href="./client/css/components/controlsBox.css">
+<link rel="stylesheet" href="./client/css/components/listOfEpisodes.css">
 <link rel="icon" type="image/x-icon" href="./favicon.ico">

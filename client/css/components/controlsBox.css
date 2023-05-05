@@ -199,6 +199,14 @@ button.volume {
     right: 0;
 }
 
+.time-numbers {
+    background-color: var(--white);
+    color: var(--brown);
+    position: absolute;
+    bottom: 20px;
+    right: 32px;
+}
+
 .volume-container {
     position: absolute;
     right: calc(100% + 1rem);
