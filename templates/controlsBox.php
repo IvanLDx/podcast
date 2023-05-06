@@ -8,13 +8,13 @@
         <canvas class="cv-title js-cv-title"></canvas>
     </div>
     
-    <div class="audio-container">
+    <div class="audio-container js-audio-container" data-current-episode="<?="$watchingPodcast->id/$watchingPodcast->season/$watchingPodcast->episode"?>">
 
         <!-- HIDDEN AUDIO TOOL -->
         <div class="audio-wrapper">
             <audio controls volume="0">
                 <!-- <source class="js-player-src" type="audio/mp3" src="audio/test/ramones.mp3"> -->
-                <source class="js-player-src" type="audio/mp3" src="audio/asefemeridas/1/1.mp3">
+                <source class="js-player-src" type="audio/mp3">
             </audio>
         </div>
 
@@ -23,6 +23,7 @@
             <canvas class="js-cv-frequency cv-frequency"></canvas>
             <canvas class="js-cv-frequency cv-frequency cv-frequency-bottom"></canvas>
         </div>
+
         <div class="time-numbers">
             <span class="time-numbers__current-time js-current-time">00:00</span>
              / 

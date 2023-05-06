@@ -5,6 +5,7 @@ export default Audio = (VOLUME, SPEED) => {
 	self.bar.click = (evt) => {
 		self.bar.addEventListener('click', (e) => evt(e));
 	};
+	self.playerSrc = document.querySelector('.js-player-src');
 	self.timeline = document.querySelector('.timer');
 	self.timeDisplay = {
 		current: document.querySelector('.js-current-time'),
@@ -16,6 +17,17 @@ export default Audio = (VOLUME, SPEED) => {
 	if (SPEED) {
 		self.playbackRate = SPEED;
 	}
+
+	var super_load = self.load();
+	self.load = () => {
+		super_load;
+		var waitForDataLoaded = setInterval(() => {
+			if (self.readyState > 2) {
+				self.setTotalTime();
+				clearInterval(waitForDataLoaded);
+			}
+		}, 100);
+	};
 
 	self.playAction = (e) => {
 		e.attr('data-action', 'pause');
@@ -73,6 +85,16 @@ export default Audio = (VOLUME, SPEED) => {
 		self.currentTime = (mouseX * self.duration) / barWidth;
 		self.updateWidth();
 		self.updateDisplayTime();
+	};
+
+	self.setEpisode = () => {
+		var $audioContainer = document.querySelector('.js-audio-container');
+		var currentEpisode = $audioContainer.getAttribute(
+			'data-current-episode'
+		);
+		self.playerSrc.src = `audio/${currentEpisode}.mp3`;
+
+		self.load();
 	};
 
 	return self;

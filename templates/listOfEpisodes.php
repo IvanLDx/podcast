@@ -1,15 +1,10 @@
-<?php
-$pods = json_decode(file_get_contents("./data/podcasts.json"));
-$efemeridas = $pods[0];
-?>
-
 <div class="list-of-episodes">
     <ul class="episodes-list">
         <?php for ($i = 0; $i < count($efemeridas->content); $i++) {
             $episode = $efemeridas->content[$i];
             $fullTitle = $efemeridas->name . " - " . $episode->name . " - Episodio " . $episode->episode . ", Tempada " . $episode->season . " - ";
             ?>
-            <li class="episode__wrapper .js-episode <?=$i === 1 ? 'selected' : '' ?>" data-full-title="<?=$fullTitle?>">
+            <li class="episode__wrapper .js-episode <?=$i === 1 ? 'selected' : '' ?>" data-full-title="<?=$fullTitle?>" data-file="<?="$efemeridas->id/$episode->season/$episode->episode"?>">
                 <ul>
                     <li class="episode-number">Episodio <?=$episode->episode?> - Tempada <?=$episode->season?></li>
                     <?php

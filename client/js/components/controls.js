@@ -6,7 +6,7 @@ const VOLUME = 1;
 const $audio = Audio(VOLUME, SPEED);
 
 export const start = () => {
-	$audio.setTotalTime();
+	$audio.setEpisode();
 	timer();
 };
 
