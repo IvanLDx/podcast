@@ -1,3 +1,6 @@
+import { ajax } from './ajax.js';
+import * as title from '../components/title.js';
+
 export default Audio = (VOLUME, SPEED) => {
 	let self = document.querySelector('audio');
 
@@ -5,6 +8,7 @@ export default Audio = (VOLUME, SPEED) => {
 	self.bar.click = (evt) => {
 		self.bar.addEventListener('click', (e) => evt(e));
 	};
+	self.container = document.querySelector('.js-audio-container');
 	self.playerSrc = document.querySelector('.js-player-src');
 	self.timeline = document.querySelector('.timer');
 	self.timeDisplay = {
@@ -17,17 +21,6 @@ export default Audio = (VOLUME, SPEED) => {
 	if (SPEED) {
 		self.playbackRate = SPEED;
 	}
-
-	var super_load = self.load();
-	self.load = () => {
-		super_load;
-		var waitForDataLoaded = setInterval(() => {
-			if (self.readyState > 2) {
-				self.setTotalTime();
-				clearInterval(waitForDataLoaded);
-			}
-		}, 100);
-	};
 
 	self.playAction = (e) => {
 		e.attr('data-action', 'pause');
@@ -60,8 +53,21 @@ export default Audio = (VOLUME, SPEED) => {
 		return minutes + ':' + seconds;
 	};
 
+	self.getCurrentEpisode = () => {
+		return self.container.getAttribute('data-current-episode');
+	};
+
+	self.getEpisodeListElement = () => {
+		let episodeID = self.container.getAttribute('data-current-episode-id');
+		return document.querySelector(`[data-podcast-id="${episodeID}"]`);
+	};
+
 	self.getFormattedTime = (time) => {
 		let currentTime = Math.floor(time);
+
+		if (isNaN(time)) {
+			return '00:00';
+		}
 
 		if (currentTime < 10) {
 			currentTime = '00:0' + currentTime;
@@ -87,14 +93,56 @@ export default Audio = (VOLUME, SPEED) => {
 		self.updateDisplayTime();
 	};
 
-	self.setEpisode = () => {
-		var $audioContainer = document.querySelector('.js-audio-container');
-		var currentEpisode = $audioContainer.getAttribute(
-			'data-current-episode'
-		);
-		self.playerSrc.src = `audio/${currentEpisode}.mp3`;
+	self.ajaxSelectEpisode = () => {
+		ajax({
+			url: 'selectEpisode',
+			data: {
+				episode: self.getCurrentEpisode()
+			},
+			success: (res) => {
+				if (res.success) {
+					let episodeFormatted = res.episode.id.replaceAll('-', '/');
+					episodeFormatted = episodeFormatted.replaceAll('_', '/');
+					self.container.setAttribute(
+						'data-current-episode',
+						episodeFormatted
+					);
 
+					self.container.setAttribute(
+						'data-current-episode-id',
+						res.episode.id
+					);
+
+					self.setEpisode();
+					self.setTotalTime();
+					self.play();
+				}
+			}
+		});
+	};
+
+	self.setEpisode = () => {
+		var currentEpisode = self.getCurrentEpisode();
+		self.playerSrc.src = `audio/${currentEpisode}.mp3`;
 		self.load();
+		let $selectedEpisode = document.querySelector('.selected');
+		if ($selectedEpisode) {
+			console.info($selectedEpisode);
+			$selectedEpisode.classList.remove('selected');
+		}
+
+		let $episode = self.getEpisodeListElement();
+		if ($episode) {
+			title.setTitle($episode.getAttribute('data-full-title'));
+			$episode.classList.add('selected');
+		}
+
+		var waitForDataLoaded = setInterval(() => {
+			if (self.readyState > 2) {
+				self.setTotalTime();
+				clearInterval(waitForDataLoaded);
+			}
+		}, 100);
 	};
 
 	return self;

@@ -1,9 +1,10 @@
 {
-    "watchingPodcast" : [
+    "watchingPodcast": [
         {
-            "id": "asefemeridas",
+            "id": "asefemeridas_1-2",
+            "name": "asefemeridas",
             "season": 1,
-            "episode": 4,
+            "episode": 2,
             "time": 600
         }
     ]

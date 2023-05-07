@@ -4,30 +4,35 @@
         "id": "asefemeridas",
         "content": [
             {
+                "id": "asefemeridas_1-1",
                 "name": "Somos galegos e non nos entendemos \/ A venda do San Marcos",
                 "date": "2023-05-01",
                 "season": "1",
                 "episode": "1"
             },
             {
+                "id": "asefemeridas_1-2",
                 "name": "As romar\u00edas fake \/ A primeira obra de teatro en Compostela",
                 "date": "2023-05-01",
                 "season": "1",
                 "episode": "2"
             },
             {
-                "name": "Abraham contenado a pagar \/ Un dos manuscritos m\u00e1is belos",
+                "id": "asefemeridas_1-3",
+                "name": "Abraham condenado a pagar \/ Un dos manuscritos m\u00e1is belos",
                 "date": "2023-05-01",
                 "season": "1",
                 "episode": "3"
             },
             {
+                "id": "asefemeridas_1-4",
                 "name": "Os cazadores de lobos \/ Antonio Ventura Xos\u00e9 Baamonde",
                 "date": "",
                 "season": "1",
                 "episode": "4"
             },
             {
+                "id": "asefemeridas_1-5",
                 "name": "O duque de Lancaster \/ Catalina Pernas",
                 "date": "2023-05-01",
                 "season": "1",

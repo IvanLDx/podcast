@@ -4,7 +4,11 @@
             $episode = $efemeridas->content[$i];
             $fullTitle = $efemeridas->name . " - " . $episode->name . " - Episodio " . $episode->episode . ", Tempada " . $episode->season . " - ";
             ?>
-            <li class="episode__wrapper .js-episode <?=$i === 1 ? 'selected' : '' ?>" data-full-title="<?=$fullTitle?>" data-file="<?="$efemeridas->id/$episode->season/$episode->episode"?>">
+            <li
+                class="episode__wrapper .js-episode <?=$episode->id === $watchingPodcast->id ? 'selected' : '' ?>"
+                data-full-title="<?=$fullTitle?>"
+                data-file="<?="$efemeridas->id/$episode->season/$episode->episode"?>"
+                data-podcast-id="<?=$episode->id?>">
                 <ul>
                     <li class="episode-number">Episodio <?=$episode->episode?> - Tempada <?=$episode->season?></li>
                     <?php
