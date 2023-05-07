@@ -15,6 +15,10 @@ const timer = () => {
 		$audio.updateWidth();
 		$audio.updateDisplayTime();
 		timer();
+		if ($audio.currentTime >= $audio.duration) {
+			$audio.currentTime = 0;
+			$audio.ajaxSelectEpisode();
+		}
 	}, 1000 / SPEED);
 };
 

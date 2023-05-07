@@ -8,7 +8,10 @@
         <canvas class="cv-title js-cv-title"></canvas>
     </div>
     
-    <div class="audio-container js-audio-container" data-current-episode="<?="$watchingPodcast->id/$watchingPodcast->season/$watchingPodcast->episode"?>">
+    <div
+        class="audio-container js-audio-container"
+        data-current-episode-id="<?=$watchingPodcast->id?>"
+        data-current-episode="<?="$watchingPodcast->name/$watchingPodcast->season/$watchingPodcast->episode"?>">
 
         <!-- HIDDEN AUDIO TOOL -->
         <div class="audio-wrapper">

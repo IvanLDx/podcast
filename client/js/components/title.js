@@ -4,7 +4,7 @@ const TEXT_SPD = 4;
 const DOT_SIZE = 1;
 const DOT_WIDTH = 7;
 const DOT_HEIGHT = 8;
-let phrase = `As efeméridas - María Soliña / Os irmandiños - Tempada 2, Episodio 3 - `;
+let phrase = '';
 const cv = document.querySelector('.js-cv-title');
 const ctx = cv.getContext('2d');
 cv.width = 345;
@@ -47,6 +47,10 @@ const CharGrid = function () {
 };
 
 const grid = new CharGrid();
+
+export const setTitle = (newPhrase) => {
+	phrase = newPhrase;
+};
 
 export const title = {
 	start: () => {
