@@ -41,14 +41,14 @@
             <div class="bookmark"></div>
             <div class="play-controls">
                 <span></span>
-                <button class="backward">
+                <button class="backward js-backward">
                     <img class="controls-img" src="./client/img/svg/controls/backward.svg" alt="">
                 </button>
                 <button class="play-pause" data-action="play">
                     <img class="controls-img play-img" src="./client/img/svg/controls/play.svg" alt="">
                     <img class="controls-img pause-img" src="./client/img/svg/controls/pause.svg" alt="">
                 </button>
-                <button class="forward">
+                <button class="forward js-forward">
                     <img class="controls-img" src="./client/img/svg/controls/forward.svg" alt="">
                 </button>
                 <span></span>

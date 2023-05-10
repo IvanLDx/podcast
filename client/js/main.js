@@ -6,23 +6,22 @@ import * as frequency from './components/frequencyWave.js';
 import { volumeScrew } from './components/volumeScrew.js';
 import Audio from './modules/Audio.js';
 
-var pods = $('.js-pods');
-pods.click((e) => {
-	ajax({
-		url: 'getEpisodes',
-		method: 'GET',
-		data: { id: e.getID() },
-		raw: (data) => {
-			$('.js-player-list').html(data.response);
-		}
-	});
-});
+// var pods = $('.js-pods');
+// pods.click((e) => {
+// 	ajax({
+// 		url: 'getEpisodes',
+// 		method: 'GET',
+// 		data: { id: e.getID() },
+// 		raw: (data) => {
+// 			$('.js-player-list').html(data.response);
+// 		}
+// 	});
+// });
 
-$.click('.js-player-li', (e) => {
-	let $audioTag = $('.js-player-src');
-	console.info(e.getAudioUrl());
-	$audioTag.loadAudio(e.getAudioUrl());
-});
+// $.click('.js-player-li', (e) => {
+// 	let $audioTag = $('.js-player-src');
+// 	$audioTag.loadAudio(e.getAudioUrl());
+// });
 
 $.click('.js-vinyl:not(.selected)', (e) => {
 	$('.js-vinyl.selected').removeClass('selected');

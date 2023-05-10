@@ -24,7 +24,7 @@
                     <label for="name">Nome</label>
                     <input type="text" name="name" data-required="true">
                 </div>
-                <div class="input input-date">
+                <div class="input input-date" style="display:none">
                     <label for="date">Data</label>
                     <input type="date" name="date">
                 </div>

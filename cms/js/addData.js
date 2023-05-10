@@ -9,14 +9,8 @@ function submitForm() {
 		method: 'POST',
 		url: 'addItem',
 		data: formData,
-		// raw: (res) => {
-		// 	try {
-		// 		console.info(res.response);
-		// 	} catch (e) {}
-		// }
 		success: (res) => {
 			if (res.success) {
-				console.info($('.input'));
 				$('.input input').val('');
 			}
 		}

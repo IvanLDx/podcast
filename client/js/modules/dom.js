@@ -134,6 +134,20 @@ $.selfFunctions = (self) => {
 $.click = function (el, evt) {
 	document.querySelector('body').addEventListener('click', (e) => {
 		let list = e.target.closest(el);
+		if (!list) {
+			let parent = e.target.parentElement;
+			while (
+				!parent.classList.contains(el) &&
+				parent.nodeName !== 'HTML'
+			) {
+				parent = parent.parentElement;
+			}
+
+			list = parent;
+		}
+		if (list.nodeName === 'BODY' || list.nodeName === 'HTML') {
+			return;
+		}
 		if (!list) return;
 		$.selfFunctions(list);
 		evt(list);

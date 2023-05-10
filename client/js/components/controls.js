@@ -17,7 +17,7 @@ const timer = () => {
 		timer();
 		if ($audio.currentTime >= $audio.duration) {
 			$audio.currentTime = 0;
-			$audio.ajaxSelectEpisode();
+			$audio.ajaxSelectNextEpisode();
 		}
 	}, 1000 / SPEED);
 };
@@ -38,4 +38,16 @@ $.click('.play-pause', (e) => {
 			$audio.pauseAction(e);
 			break;
 	}
+});
+
+$.click('.js-forward', (e) => {
+	$audio.ajaxSelectNextEpisode();
+});
+
+$.click('.js-backward', (e) => {
+	$audio.ajaxSelectPreviousEpisode();
+});
+
+$.click('.js-episode-listed', (e) => {
+	$audio.ajaxSelectSelectedEpisode(e.attr('data-podcast-id'));
 });
