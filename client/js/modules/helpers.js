@@ -20,8 +20,6 @@ export const helpers = {
 			if (input.value.trim() === '') {
 				result.error = true;
 				input.closest('.input').classList.add('miss');
-				// console.info(input);
-				// result.list.push(input);
 			}
 		});
 		return result;

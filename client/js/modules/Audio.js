@@ -1,5 +1,6 @@
 import { ajax } from './ajax.js';
 import * as title from '../components/title.js';
+import { $ } from './dom.js';
 
 export default Audio = (VOLUME, SPEED) => {
 	let self = document.querySelector('audio');
@@ -31,6 +32,10 @@ export default Audio = (VOLUME, SPEED) => {
 		self.timeDisplay.total.textContent = self.getFormattedTime(
 			self.duration
 		);
+	};
+
+	self.isPlaying = () => {
+		return $('.play-pause')[0].attr('data-action') === 'pause';
 	};
 
 	self.pauseAction = (e) => {
@@ -93,32 +98,65 @@ export default Audio = (VOLUME, SPEED) => {
 		self.updateDisplayTime();
 	};
 
-	self.ajaxSelectEpisode = () => {
+	self.ajaxSelectNextEpisode = () => {
 		ajax({
 			url: 'selectEpisode',
 			data: {
+				action: 'nextEpisode',
 				episode: self.getCurrentEpisode()
 			},
 			success: (res) => {
 				if (res.success) {
-					let episodeFormatted = res.episode.id.replaceAll('-', '/');
-					episodeFormatted = episodeFormatted.replaceAll('_', '/');
-					self.container.setAttribute(
-						'data-current-episode',
-						episodeFormatted
-					);
-
-					self.container.setAttribute(
-						'data-current-episode-id',
-						res.episode.id
-					);
-
-					self.setEpisode();
-					self.setTotalTime();
-					self.play();
+					self.selectNextEpisode(res);
 				}
 			}
 		});
+	};
+
+	self.ajaxSelectPreviousEpisode = () => {
+		ajax({
+			url: 'selectEpisode',
+			data: {
+				action: 'previousEpisode',
+				episode: self.getCurrentEpisode()
+			},
+			success: (res) => {
+				if (res.success) {
+					self.selectNextEpisode(res);
+				}
+			}
+		});
+	};
+
+	self.ajaxSelectSelectedEpisode = (episode) => {
+		ajax({
+			url: 'selectEpisode',
+			data: {
+				action: 'selectedEpisode',
+				episode: episode
+			},
+			success: (res) => {
+				if (res.success) {
+					console.info(res);
+					self.selectNextEpisode(res);
+				}
+			}
+		});
+	};
+
+	self.selectNextEpisode = (res) => {
+		let episodeFormatted = res.episode.id.replaceAll('-', '/');
+		episodeFormatted = episodeFormatted.replaceAll('_', '/');
+		self.container.setAttribute('data-current-episode', episodeFormatted);
+
+		self.container.setAttribute('data-current-episode-id', res.episode.id);
+
+		self.setEpisode();
+		self.setTotalTime();
+
+		if (self.isPlaying()) {
+			self.play();
+		}
 	};
 
 	self.setEpisode = () => {
@@ -127,7 +165,6 @@ export default Audio = (VOLUME, SPEED) => {
 		self.load();
 		let $selectedEpisode = document.querySelector('.selected');
 		if ($selectedEpisode) {
-			console.info($selectedEpisode);
 			$selectedEpisode.classList.remove('selected');
 		}
 
